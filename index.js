@@ -6,6 +6,9 @@ const config = require('./config');
 const dbUri = process.env.MONGOLAB_URI || config.dbUri; 
 const port = process.env.PORT || 3000;
 
+console.log ("dbUri: " + dbUri);
+console.log ("port: " + port);
+
 // connect to the database and load models
 require('./server/models').connect(dbUri);
 
