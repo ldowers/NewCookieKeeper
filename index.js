@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 3000;
 
 // connect to the database and load models
 if (PORT === 3000) {
-  require('./server/models').connect(config.dbUri);  
+  require('./server/models').connect(config.dbUriLocal);  
 } else {
-  require('./server/models').connect("mongodb://heroku_4nh4qhwc:11snhhd7q4qv7gkp1v270hm74d@ds127730.mlab.com:27730/heroku_4nh4qhwc");
+  require('./server/models').connect(config.dbUriHeroku);
 }
 
 const app = express();

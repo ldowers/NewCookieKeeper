@@ -1,4 +1,5 @@
 {
-  "dbUri": "mongodb://localhost/cookiedb",
+  "dbUriLocal": "mongodb://localhost/cookiedb",
+  "dbUriHeroku": "mongodb://heroku_4nh4qhwc:11snhhd7q4qv7gkp1v270hm74d@ds127730.mlab.com:27730/heroku_4nh4qhwc",
   "jwtSecret": "a secret phrase!!"
 }
