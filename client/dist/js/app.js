@@ -10256,7 +10256,7 @@ function getMuiTheme(muiTheme) {
       floatingLabelColor: palette.disabledColor,
       disabledTextColor: palette.disabledColor,
       errorColor: _colors.red500,
-      focusColor: palette.primary1Color,
+      focusColor: "#00a850",
       backgroundColor: 'transparent',
       borderColor: palette.borderColor
     },
