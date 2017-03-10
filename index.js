@@ -3,14 +3,14 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./config');
 
-const dbUri = process.env.MONGOLAB_URI || config.dbUri; 
-const port = process.env.PORT || 3000;
-
-console.log ("dbUri: " + dbUri);
-console.log ("port: " + port);
+const PORT = process.env.PORT || 3000;
 
 // connect to the database and load models
-require('./server/models').connect(dbUri);
+if (PORT === 3000) {
+  require('./server/models').connect(config.dbUri);  
+} else {
+  require('./server/models').connect("mongodb://heroku_4nh4qhwc:11snhhd7q4qv7gkp1v270hm74d@ds127730.mlab.com:27730/heroku_4nh4qhwc");
+}
 
 const app = express();
 // tell the app to look for static files in these directories
@@ -39,6 +39,6 @@ app.use('/api', apiRoutes);
 
 
 // start the server
-app.listen(port, () => {
-  console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", port, port);
+app.listen(PORT, () => {
+  console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
 });
