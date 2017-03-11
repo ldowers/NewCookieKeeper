@@ -10256,7 +10256,7 @@ function getMuiTheme(muiTheme) {
       floatingLabelColor: palette.disabledColor,
       disabledTextColor: palette.disabledColor,
       errorColor: _colors.red500,
-      focusColor: "#00a850",
+      focusColor: palette.primary1Color,
       backgroundColor: 'transparent',
       borderColor: palette.borderColor
     },
@@ -15673,7 +15673,7 @@ var Base = function Base(_ref) {
         _react2.default.createElement(
           _reactRouter.IndexLink,
           { to: '/' },
-          'React App'
+          'Cookie Keeper'
         )
       ),
       _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(
@@ -15774,7 +15774,7 @@ var HomePage = function HomePage() {
   return _react2.default.createElement(
     _Card.Card,
     { className: 'container' },
-    _react2.default.createElement(_Card.CardTitle, { title: 'React Application', subtitle: 'This is the home page.' })
+    _react2.default.createElement(_Card.CardTitle, { title: 'Cookie Keeper', subtitle: 'This is the home page.' })
   );
 };
 
