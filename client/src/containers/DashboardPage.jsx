@@ -20,6 +20,7 @@ class DashboardPage extends React.Component {
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
+    console.log("DashboardPage: componentDidMount");
     const xhr = new XMLHttpRequest();
     xhr.open('get', '/api/dashboard');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -28,6 +29,7 @@ class DashboardPage extends React.Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
+        console.log("DashboardPage: message: " + xhr.response.message);
         this.setState({
           secretData: xhr.response.message
         });

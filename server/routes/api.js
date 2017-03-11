@@ -15,7 +15,9 @@ router.get('/information', (req, res) => {
         console.log(err);
       }
       else {
-        res.status(200).send(doc);
+        res.status(200).json({
+          girls: doc
+        });
       }
     });
 });

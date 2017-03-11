@@ -3,7 +3,7 @@ import Auth from '../modules/Auth';
 import Information from '../components/Information.jsx';
 
 
-class Information extends React.Component {
+class InformationPage extends React.Component {
 
   /**
    * Class constructor.
@@ -12,8 +12,7 @@ class Information extends React.Component {
     super(props);
 
     this.state = {
-      secretData: '',
-      girls: {}
+      girls: []
     };
   }
 
@@ -21,6 +20,7 @@ class Information extends React.Component {
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
+    console.log ("InformationPage: componentDidMount");
     const xhr = new XMLHttpRequest();
     xhr.open('get', '/api/information');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -29,10 +29,13 @@ class Information extends React.Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
+        console.log("InformationPage: status 200");
         this.setState({
-          secretData: xhr.response.message,
           girls: xhr.response.girls 
         });
+      }
+      else {
+        console.log("InformationPage: status: " + xhr.status);
       }
     });
     xhr.send();
@@ -42,7 +45,7 @@ class Information extends React.Component {
    * Render the component.
    */
   render() {
-    return (<Information secretData={this.state.secretData} girls={this.state.girls} />);
+    return (<Information girls={this.state.girls} />);
   }
 
 }

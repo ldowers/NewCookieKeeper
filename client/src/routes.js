@@ -4,6 +4,7 @@ import DashboardPage from './containers/DashboardPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
+import InformationPage from './containers/InformationPage.jsx';
 
 
 const routes = {
@@ -19,6 +20,13 @@ const routes = {
         } else {
           callback(null, HomePage);
         }
+      }
+    },
+
+    {
+      path: '/information',
+      getComponent: (location, callback) => {
+        callback(null, InformationPage);
       }
     },
 
