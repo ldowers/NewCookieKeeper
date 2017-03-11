@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ldowers/NewCookieKeeper#readme",
   "dependencies": {
+    "babel-register": "^6.23.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",

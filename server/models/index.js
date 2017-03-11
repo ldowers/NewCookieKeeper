@@ -14,4 +14,6 @@ module.exports.connect = (uri) => {
   // load models
   require('./user');
   require('./girl');
+  require('./booth');
+  require('./cookie');
 };
