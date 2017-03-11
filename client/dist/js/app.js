@@ -15678,24 +15678,16 @@ var Base = function Base(_ref) {
       ),
       _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(
         'div',
-        null,
+        { className: 'top-bar-right' },
         _react2.default.createElement(
-          'div',
-          { className: 'top-bar-left' },
-          _react2.default.createElement(
-            _reactRouter.Link,
-            { to: '/information' },
-            'Information'
-          )
+          _reactRouter.Link,
+          { to: '/' },
+          'Information'
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'top-bar-right' },
-          _react2.default.createElement(
-            _reactRouter.Link,
-            { to: '/logout' },
-            'Log out'
-          )
+          _reactRouter.Link,
+          { to: '/logout' },
+          'Log out'
         )
       ) : _react2.default.createElement(
         'div',
