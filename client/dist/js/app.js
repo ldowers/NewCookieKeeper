@@ -15681,6 +15681,11 @@ var Base = function Base(_ref) {
         { className: 'top-bar-right' },
         _react2.default.createElement(
           _reactRouter.Link,
+          { to: '/' },
+          'Information'
+        ),
+        _react2.default.createElement(
+          _reactRouter.Link,
           { to: '/logout' },
           'Log out'
         )
