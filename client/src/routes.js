@@ -5,6 +5,7 @@ import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
 import InformationPage from './containers/InformationPage.jsx';
+import CookieInventoryPage from './containers/CookieInventoryPage.jsx';
 
 
 const routes = {
@@ -27,6 +28,13 @@ const routes = {
       path: '/information',
       getComponent: (location, callback) => {
         callback(null, InformationPage);
+      }
+    },
+
+    {
+      path: '/cookieInventory',
+      getComponent: (location, callback) => {
+        callback(null, CookieInventoryPage);
       }
     },
 
