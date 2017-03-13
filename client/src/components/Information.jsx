@@ -60,8 +60,8 @@ const Information = ({girls}) => (
     options={options} 
     options={deleteOptions}
     csvFileName='Girls Info.csv'>
-      <TableHeaderColumn dataField='_id' csvHeader='ID' isKey={true}>ID#</TableHeaderColumn>
-      <TableHeaderColumn dataField='name' csvHeader="Girl's Name">Girl's Name</TableHeaderColumn>
+      
+      <TableHeaderColumn dataField='name' csvHeader="Girl's Name" isKey={true}>Girl's Name</TableHeaderColumn>
     </BootstrapTable>
   </div>
 );
