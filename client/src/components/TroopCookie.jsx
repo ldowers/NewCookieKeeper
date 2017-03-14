@@ -21,7 +21,8 @@ function onAfterInsertRow(row) {
 }
 
 const options = {
-    afterInsertRow: onAfterInsertRow   // A hook for after insert rows
+    afterInsertRow: onAfterInsertRow,   // A hook for after insert rows
+     afterDeleteRow: onAfterDeleteRow
 };
 //======================================
 
@@ -62,7 +63,6 @@ const TroopCookie = ({troopCookies}) => (
     selectRow={selectRowProp} 
     exportCSV={ true }
     options={options} 
-    options={deleteOptions}
     csvFileName='Troop Cookie Inventory.csv'>
       
       <TableHeaderColumn dataField='type' csvHeader="Cookie" isKey={true}>Cookie Type</TableHeaderColumn>
