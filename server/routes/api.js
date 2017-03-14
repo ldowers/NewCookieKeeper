@@ -3,6 +3,7 @@ const router = new express.Router();
 var Girl = require ("../models/girl.js");
 var Cookie = require ("../models/cookie.js");
 var TroopCookie = require("../models/troopCookie.js");
+var GirlCookie = require("../models/girlCookie.js");
 
 router.get('/dashboard', (req, res) => {
   res.status(200).json({
@@ -47,6 +48,20 @@ router.get('/troopCookie', (req, res) => {
       else {
         res.status(200).json({
           troopCookies: doc
+        });
+      }
+    });
+});
+
+router.get('/girlCookies', (req, res) => {
+  GirlCookie.find({})
+    .exec(function(err, doc) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.status(200).json({
+          girlCookies: doc
         });
       }
     });
