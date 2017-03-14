@@ -6,6 +6,7 @@ import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
 import InformationPage from './containers/InformationPage.jsx';
 import CookieInventoryPage from './containers/CookieInventoryPage.jsx';
+import TroopCookiePage from './containers/TroopCookiePage.jsx';
 
 
 const routes = {
@@ -35,6 +36,13 @@ const routes = {
       path: '/cookieInventory',
       getComponent: (location, callback) => {
         callback(null, CookieInventoryPage);
+      }
+    },
+
+    {
+      path: '/troopCookie',
+      getComponent: (location, callback) => {
+        callback(null, TroopCookiePage);
       }
     },
 
