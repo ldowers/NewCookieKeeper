@@ -79,17 +79,26 @@ button{
 }
 
 .btn-group {
-  margin: 10px 140px;
+  margin: 10px auto;
 }
 
 @media (min-width: 768px){
   .col-sm-6{
-    width: 100%;
+    width: 75% !important;
+    margin-left:125px;
   }
 }
 
 .table {
-  width: 75% !important;
+  width:80% !important;
   margin-left: auto;
   margin-right: auto;
+}
+
+.react-bs-table .table-bordered{
+  border: 1px solid #ddd !important;
+}
+
+.react-bs-table{
+  border:0 !important;
 }
