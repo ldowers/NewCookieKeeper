@@ -65,7 +65,8 @@ const TroopCookie = ({troopCookies}) => (
     options={options} 
     csvFileName='Troop Cookie Inventory.csv'>
       
-      <TableHeaderColumn dataField='type' csvHeader="Cookie" isKey={true}>Cookie Type</TableHeaderColumn>
+      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true}hidden >ID #</TableHeaderColumn>
+      <TableHeaderColumn dataField='type' csvHeader="Cookie">Cookie Type</TableHeaderColumn>
       <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
       <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
        <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>

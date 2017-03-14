@@ -21,8 +21,7 @@ function onAfterInsertRow(row) {
 }
 
 const options = {
-    afterInsertRow: onAfterInsertRow,   // A hook for after insert rows
-    afterDeleteRow: onAfterDeleteRow
+    afterInsertRow: onAfterInsertRow   // A hook for after insert rows
 };
 //======================================
 
@@ -32,6 +31,9 @@ function onAfterDeleteRow(rowKeys) {
     alert('The rowkey you drop: ' + rowKeys);
 }
 
+const deleteOptions = {
+    afterDeleteRow: onAfterDeleteRow  // A hook for after droping rows.
+};
 
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
@@ -39,37 +41,41 @@ const selectRowProp = {
 };
 //======================================
 
-const GirlScout = ({girlCookies}) => (
+const TroopCookie = ({troopCookies}) => (
   <div>
     <Card className="container">
       <CardTitle
-        title="Girl Scout Cookie Inventory"
+        title="Troop Cookie Inventory"
       />
     </Card>
 
+    {console.log("troopCookies is: " +troopCookies)}
+    {console.log("troopCookies[0] is: " + JSON.stringify(troopCookies[0]),null, 4)}
+    {/*{console.log("troopCookies[0].TAL is: " + troopCookies[0]['TAL'])}*/}
     
-    {/*Girl Scout Cookie Inventory Table*/}
+    {/*Troop Cookie Inventory Table*/}
     <BootstrapTable 
-    data={girlCookies} 
+    data={troopCookies} 
     cellEdit={cellEditProp} 
     insertRow={true} 
     deleteRow={true} 
     selectRow={selectRowProp} 
     exportCSV={ true }
     options={options} 
-    csvFileName='Girl Scout Cookie Inventory.csv'>
+    options={deleteOptions}
+    csvFileName='Troop Cookie Inventory.csv'>
       
-      <TableHeaderColumn dataField='_id' csvHeader="ID#" isKey={true} hidden >ID #</TableHeaderColumn>
-      <TableHeaderColumn dataField='name' csvHeader="Girl's Name">Girl's Name</TableHeaderColumn>
-      <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
-      
+      <TableHeaderColumn dataField='type' csvHeader="Cookie" isKey={true}>Cookie Type</TableHeaderColumn>
+      <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
+      <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
+       <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
     
     </BootstrapTable>
   </div>
 );
 
-GirlScout.propTypes = {
-  girlCookies: PropTypes.array.isRequired
+TroopCookie.propTypes = {
+  troopCookies: PropTypes.array.isRequired
 };
 
-export default GirlScout;
+export default TroopCookie;
