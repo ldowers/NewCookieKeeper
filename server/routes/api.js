@@ -4,6 +4,7 @@ var Girl = require ("../models/girl.js");
 var Cookie = require ("../models/cookie.js");
 var TroopCookie = require("../models/troopCookie.js");
 var GirlCookie = require("../models/girlCookie.js");
+var BoothCookie = require("../models/boothCookie.js");
 
 router.get('/dashboard', (req, res) => {
   res.status(200).json({
@@ -62,6 +63,20 @@ router.get('/girlCookies', (req, res) => {
       else {
         res.status(200).json({
           girlCookies: doc
+        });
+      }
+    });
+});
+
+router.get('/boothCookie', (req, res) => {
+  BoothCookie.find({})
+    .exec(function(err, doc) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.status(200).json({
+          boothCookies: doc
         });
       }
     });

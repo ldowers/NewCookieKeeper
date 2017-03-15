@@ -1,8 +1,8 @@
 import React from 'react';
 import Auth from '../modules/Auth';
-import TroopCookie from '../components/TroopCookie.jsx';
+import BoothCookie from '../components/BoothCookie.jsx';
 
-class TroopCookiePage extends React.Component {
+class BoothCookiePage extends React.Component {
 
     /**
    * Class constructor.
@@ -11,7 +11,7 @@ class TroopCookiePage extends React.Component {
         super(props);
 
         this.state = {
-            troopCookies: []
+            boothCookies: []
         };
     }
 
@@ -19,23 +19,23 @@ class TroopCookiePage extends React.Component {
    * This method will be executed after initial rendering.
    */
     componentDidMount() {
-        console.log("TroopCookiePage: componentDidMount");
+        console.log("BoothCookiePage: componentDidMount");
 
         const xhr = new XMLHttpRequest();
-        xhr.open('get', '/api/troopCookie');
+        xhr.open('get', '/api/boothCookie');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         // set the authorization HTTP header
         xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
-                console.log("TroopCookiePage: status 200");
+                console.log("BoothCookiePage: status 200");
                 this.setState({
-                    troopCookies: xhr.response.troopCookies
+                    boothCookies: xhr.response.boothCookies
                 });
             }
             else {
-                console.log("Troop Cookie Page: status: " + xhr.status);
+                console.log("Booth Cookie Page: status: " + xhr.status);
             }
         });
         xhr.send();
@@ -46,8 +46,8 @@ class TroopCookiePage extends React.Component {
      * Render the component.
     */
     render() {
-        return (<TroopCookie troopCookies={this.state.troopCookies}/>);
+        return (<BoothCookie boothCookies={this.state.boothCookies}/>);
     }
 }
 
-export default TroopCookiePage;
+export default BoothCookiePage;

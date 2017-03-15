@@ -8,6 +8,7 @@ import InformationPage from './containers/InformationPage.jsx';
 import CookieInventoryPage from './containers/CookieInventoryPage.jsx';
 import TroopCookiePage from './containers/TroopCookiePage.jsx';
 import GirlScoutPage from './containers/GirlScoutPage.jsx';
+import BoothCookiePage from './containers/BoothCookiePage.jsx';
 
 
 const routes = {
@@ -50,6 +51,12 @@ const routes = {
       path: '/girlScout',
       getComponent: (location, callback) => {
         callback(null, GirlScoutPage);
+      }
+    },
+    {
+      path: '/boothCOokie',
+      getComponent: (location, callback) => {
+        callback(null, BoothCookiePage);
       }
     },
 

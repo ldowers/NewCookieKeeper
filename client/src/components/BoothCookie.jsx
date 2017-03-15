@@ -21,7 +21,8 @@ function onAfterInsertRow(row) {
 }
 
 const options = {
-    afterInsertRow: onAfterInsertRow   // A hook for after insert rows
+    afterInsertRow: onAfterInsertRow,   // A hook for after insert rows
+    afterDeleteRow: onAfterDeleteRow 
 };
 //======================================
 
@@ -31,9 +32,6 @@ function onAfterDeleteRow(rowKeys) {
     alert('The rowkey you drop: ' + rowKeys);
 }
 
-const deleteOptions = {
-    afterDeleteRow: onAfterDeleteRow  // A hook for after droping rows.
-};
 
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
@@ -41,41 +39,35 @@ const selectRowProp = {
 };
 //======================================
 
-const TroopCookie = ({troopCookies}) => (
+const BoothCookie = ({boothCookies}) => (
   <div>
     <Card className="container">
       <CardTitle
-        title="Troop Cookie Inventory"
+        title="Booth Cookie Inventory"
       />
     </Card>
-
-    {console.log("troopCookies is: " +troopCookies)}
-    {console.log("troopCookies[0] is: " + JSON.stringify(troopCookies[0]),null, 4)}
-    {/*{console.log("troopCookies[0].TAL is: " + troopCookies[0]['TAL'])}*/}
     
-    {/*Troop Cookie Inventory Table*/}
+    {/*Booth Cookie Inventory Table*/}
     <BootstrapTable 
-    data={troopCookies} 
+    data={boothCookies} 
     cellEdit={cellEditProp} 
     insertRow={true} 
     deleteRow={true} 
     selectRow={selectRowProp} 
     exportCSV={ true }
     options={options} 
-    options={deleteOptions}
-    csvFileName='Troop Cookie Inventory.csv'>
+    csvFileName='Booth Cookie Inventory.csv'>
       
-      <TableHeaderColumn dataField='type' csvHeader="Cookie" isKey={true}>Cookie Type</TableHeaderColumn>
-      <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
-      <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
-       <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
-    
+      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true} hidden>ID #</TableHeaderColumn>
+      <TableHeaderColumn dataField='location' csvHeader="Location">Location</TableHeaderColumn>
+      <TableHeaderColumn dataField='start' csvHeader="Start" >Start</TableHeaderColumn>
+      <TableHeaderColumn dataField='end' csvHeader="End" >End</TableHeaderColumn>
     </BootstrapTable>
   </div>
 );
 
-TroopCookie.propTypes = {
-  troopCookies: PropTypes.array.isRequired
+BoothCookie.propTypes = {
+  boothCookies: PropTypes.array.isRequired
 };
 
-export default TroopCookie;
+export default BoothCookie;
