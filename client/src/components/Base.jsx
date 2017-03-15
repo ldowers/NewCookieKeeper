@@ -7,7 +7,7 @@ const Base = ({ children }) => (
   <div>
     <div className="top-bar">
       <div className="top-bar-left">
-        <IndexLink to="/">Cookie Keeper</IndexLink>
+        <IndexLink to="/"><img className = "gs-logo" src = "/img/gs-logo.png" /> Cookie Keeper</IndexLink>
       </div>
 
       {Auth.isUserAuthenticated() ? (
