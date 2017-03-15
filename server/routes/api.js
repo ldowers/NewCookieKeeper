@@ -69,10 +69,12 @@ router.get('/troopCookie', (req, res) => {
     });
 });
 
+
 router.get('/girlCookie', (req, res) => {
   GirlCookie.find({})
     .exec(function(err, doc) {
       if (err) {
+
         console.log(err);
       }
       else {

@@ -1,53 +1,82 @@
-import React, {PropTypes} from 'react';
-import {Card, CardTitle, CardText} from 'material-ui/Card';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import React, { PropTypes } from 'react';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+
+//======================================
+//code to make cells editable
+const cellEditProp = {
+    mode: 'click'
+};
+//======================================
+
+//======================================
+//code to insert rows
+function onAfterInsertRow(row) {
+    let newRowStr = '';
+
+    for (const prop in row) {
+        newRowStr += prop + ': ' + row[prop] + ' \n';
+    }
+    alert('The new row is:\n ' + newRowStr);
+}
+
+const options = {
+    afterInsertRow: onAfterInsertRow,   // A hook for after insert rows
+     afterDeleteRow: onAfterDeleteRow
+};
+//======================================
+
+//======================================
+//code to delete rows
+function onAfterDeleteRow(rowKeys) {
+    alert('The rowkey you drop: ' + rowKeys);
+}
+
+const deleteOptions = {
+    afterDeleteRow: onAfterDeleteRow  // A hook for after droping rows.
+};
+
+// If you want to enable deleteRow, you must enable row selection also.
+const selectRowProp = {
+    mode: 'checkbox'
+};
+//======================================
 
 const TroopCookie = ({troopCookies}) => (
-    <div>
-        <Card className="container">
-            <CardTitle title="Troop Cookie Inventory"/>
-        </Card>
+  <div>
+    <Card className="container">
+      <CardTitle
+        title="Troop Cookie Inventory"
+      />
+    </Card>
 
-        {/*Troop Cookie Inventory Table*/}
-        <Table>
-            <TableHeader>
-                <TableRow>
-                    <TableHeaderColumn>Type</TableHeaderColumn>
-                    <TableHeaderColumn>From</TableHeaderColumn>
-                    <TableHeaderColumn>To</TableHeaderColumn>
-                    <TableHeaderColumn>Date</TableHeaderColumn>
-                    <TableHeaderColumn>Total</TableHeaderColumn>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {troopCookies.map(function(troopCookies, index) {
-                    return (
-                        <TableRow key={index}>
-                            <TableRowColumn>{troopCookies.type}</TableRowColumn>
-                            <TableRowColumn>{troopCookies.from}</TableRowColumn>
-                            <TableRowColumn>{troopCookies.to}</TableRowColumn>
-                            <TableRowColumn>{troopCookies.date}</TableRowColumn>
-                            <TableRowColumn>{troopCookies.TAL
-                                + troopCookies.SMR
-                                + troopCookies.LEM
-                                + troopCookies.SB
-                                + troopCookies.TM
-                                + troopCookies.PBP
-                                + troopCookies.CD
-                                + troopCookies.PBS
-                                + troopCookies.GFT
-                                + troopCookies.MCS}
-                            </TableRowColumn>
-                        </TableRow>
-                    )}
-                )}
-            </TableBody>
-        </Table>
-    </div>
+    {console.log("troopCookies is: " +troopCookies)}
+    {console.log("troopCookies[0] is: " + JSON.stringify(troopCookies[0]),null, 4)}
+    {/*{console.log("troopCookies[0].TAL is: " + troopCookies[0]['TAL'])}*/}
+    
+    {/*Troop Cookie Inventory Table*/}
+    <BootstrapTable 
+    data={troopCookies} 
+    cellEdit={cellEditProp} 
+    insertRow={true} 
+    deleteRow={true} 
+    selectRow={selectRowProp} 
+    exportCSV={ true }
+    options={options} 
+    csvFileName='Troop Cookie Inventory.csv'>
+      
+      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true}hidden >ID #</TableHeaderColumn>
+      <TableHeaderColumn dataField='type' csvHeader="Cookie">Cookie Type</TableHeaderColumn>
+      <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
+      <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
+       <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
+    
+    </BootstrapTable>
+  </div>
 );
 
 TroopCookie.propTypes = {
-    troopCookies: PropTypes.array.isRequired
+  troopCookies: PropTypes.array.isRequired
 };
 
 export default TroopCookie;
