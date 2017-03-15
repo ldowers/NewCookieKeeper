@@ -33,6 +33,30 @@ function onAfterDeleteRow(rowKeys) {
 }
 
 
+function addUpCookies(girlCookies) {
+    if(girlCookies.length === 0){
+        return
+    }
+
+    for(let i = 0; i < girlCookies.length; i++){
+        girlCookies[i].total =  
+        girlCookies[i].TAL +
+        girlCookies[i].SMR + 
+        girlCookies[i].LEM + 
+        girlCookies[i].SB + 
+        girlCookies[i].TM + 
+        girlCookies[i].PBP + 
+        girlCookies[i].CD + 
+        girlCookies[i].PBS + 
+        girlCookies[i].GFT + 
+        girlCookies[i].MCS; 
+
+    }
+
+    return girlCookies;
+}
+
+
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
     mode: 'checkbox'
@@ -50,7 +74,7 @@ const GirlScout = ({girlCookies}) => (
     
     {/*Girl Scout Cookie Inventory Table*/}
     <BootstrapTable 
-    data={girlCookies} 
+    data={addUpCookies(girlCookies)} 
     cellEdit={cellEditProp} 
     insertRow={true} 
     deleteRow={true} 
@@ -62,6 +86,7 @@ const GirlScout = ({girlCookies}) => (
       <TableHeaderColumn dataField='_id' csvHeader="ID#" isKey={true} hidden >ID #</TableHeaderColumn>
       <TableHeaderColumn dataField='name' csvHeader="Girl's Name">Girl's Name</TableHeaderColumn>
       <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
+      <TableHeaderColumn dataField='total' csvHeader="Total" >Total</TableHeaderColumn>
       
     
     </BootstrapTable>
