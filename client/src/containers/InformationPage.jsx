@@ -22,7 +22,7 @@ class InformationPage extends React.Component {
   componentDidMount() {
     console.log ("InformationPage: componentDidMount");
     const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/information');
+    xhr.open('get', '/api/girl');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // set the authorization HTTP header
     xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);

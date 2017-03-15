@@ -22,7 +22,7 @@ class CookieInventoryPage extends React.Component {
   componentDidMount() {
     console.log ("CookieInventoryPage: componentDidMount");
     const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/cookieInventory');
+    xhr.open('get', '/api/cookie');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // set the authorization HTTP header
     xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
