@@ -32,6 +32,29 @@ function onAfterDeleteRow(rowKeys) {
     alert('The rowkey you drop: ' + rowKeys);
 }
 
+function addUpCookies(troopCookies) {
+    if(troopCookies.length === 0){
+        return
+    }
+
+    for(let i = 0; i < troopCookies.length; i++){
+        troopCookies[i].total =  
+        troopCookies[i].TAL +
+        troopCookies[i].SMR + 
+        troopCookies[i].LEM + 
+        troopCookies[i].SB + 
+        troopCookies[i].TM + 
+        troopCookies[i].PBP + 
+        troopCookies[i].CD + 
+        troopCookies[i].PBS + 
+        troopCookies[i].GFT + 
+        troopCookies[i].MCS; 
+
+    }
+
+    return troopCookies;
+}
+
 const deleteOptions = {
     afterDeleteRow: onAfterDeleteRow  // A hook for after droping rows.
 };
@@ -42,6 +65,11 @@ const selectRowProp = {
 };
 //======================================
 
+// if (troopCookies != 0){
+// this.addUpCookies(troopCookies);
+// }
+
+
 const TroopCookie = ({troopCookies}) => (
   <div>
     <Card className="container">
@@ -50,13 +78,16 @@ const TroopCookie = ({troopCookies}) => (
       />
     </Card>
 
-    {console.log("troopCookies is: " +troopCookies)}
-    {console.log("troopCookies[0] is: " + JSON.stringify(troopCookies[0]),null, 4)}
-    {/*{console.log("troopCookies[0].TAL is: " + troopCookies[0]['TAL'])}*/}
-    
+    {/*{console.log(this.addUpCookies(troopCookies))}*/}
+{/*
+    {console.log("troopCookies is: " + troopCookies)}
+    {console.log("troopCookies[0] is: " + JSON.stringify(troopCookies[0], null, 4))}
+    {
+        console.log("troopcookies[0].tal " + troopCookies[0].TAL)
+    }*/}
     {/*Troop Cookie Inventory Table*/}
     <BootstrapTable 
-    data={troopCookies} 
+    data={addUpCookies(troopCookies)} 
     cellEdit={cellEditProp} 
     insertRow={true} 
     deleteRow={true} 
@@ -70,6 +101,7 @@ const TroopCookie = ({troopCookies}) => (
       <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
       <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
        <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
+       <TableHeaderColumn dataField='total' csvHeader="Total" >Total</TableHeaderColumn>
     
     </BootstrapTable>
   </div>
