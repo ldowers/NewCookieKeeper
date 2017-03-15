@@ -32,6 +32,29 @@ function onAfterDeleteRow(rowKeys) {
     alert('The rowkey you drop: ' + rowKeys);
 }
 
+function addUpCookies(boothCookies) {
+    if(boothCookies.length === 0){
+        return
+    }
+
+    for(let i = 0; i < boothCookies.length; i++){
+        boothCookies[i].total =  
+        boothCookies[i].TAL +
+        boothCookies[i].SMR + 
+        boothCookies[i].LEM + 
+        boothCookies[i].SB + 
+        boothCookies[i].TM + 
+        boothCookies[i].PBP + 
+        boothCookies[i].CD + 
+        boothCookies[i].PBS + 
+        boothCookies[i].GFT + 
+        boothCookies[i].MCS; 
+
+    }
+
+    return boothCookies;
+}
+
 
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
@@ -49,7 +72,7 @@ const BoothCookie = ({boothCookies}) => (
     
     {/*Booth Cookie Inventory Table*/}
     <BootstrapTable 
-    data={boothCookies} 
+    data={addUpCookies(boothCookies)} 
     cellEdit={cellEditProp} 
     insertRow={true} 
     deleteRow={true} 
@@ -62,6 +85,7 @@ const BoothCookie = ({boothCookies}) => (
       <TableHeaderColumn dataField='location' csvHeader="Location">Location</TableHeaderColumn>
       <TableHeaderColumn dataField='start' csvHeader="Start" >Start</TableHeaderColumn>
       <TableHeaderColumn dataField='end' csvHeader="End" >End</TableHeaderColumn>
+      <TableHeaderColumn dataField='total' csvHeader="Total" >Total</TableHeaderColumn>
     </BootstrapTable>
   </div>
 );
