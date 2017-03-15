@@ -48,13 +48,13 @@ const routes = {
       }
     },
     {
-      path: '/girlScout',
+      path: '/girlCookie',
       getComponent: (location, callback) => {
         callback(null, GirlScoutPage);
       }
     },
     {
-      path: '/boothCOokie',
+      path: '/boothCookie',
       getComponent: (location, callback) => {
         callback(null, BoothCookiePage);
       }

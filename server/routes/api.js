@@ -70,7 +70,7 @@ router.get('/troopCookie', (req, res) => {
 });
 
 
-router.get('/girlScout', (req, res) => {
+router.get('/girlCookie', (req, res) => {
   GirlCookie.find({})
     .exec(function(err, doc) {
       if (err) {
