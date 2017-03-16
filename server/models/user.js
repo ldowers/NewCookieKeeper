@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+mongoose.Promise = require('bluebird');
+
 // define the User model schema
 const UserSchema = new mongoose.Schema({
   email: {

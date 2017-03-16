@@ -7,12 +7,14 @@ var TroopCookie = require("../models/troopCookie.js");
 var GirlCookie = require("../models/girlCookie.js");
 var BoothCookie = require("../models/boothCookie.js");
 
+// Dashboard routes
 router.get('/dashboard', (req, res) => {
   res.status(200).json({
     message: "You're authorized to see this secret message."
   });
 });
 
+// Girl information routes
 router.get('/girl', (req, res) => {
   Girl.find({})
     .exec(function(err, doc) {
@@ -27,6 +29,43 @@ router.get('/girl', (req, res) => {
     });
 });
 
+router.post('/girl', (req, res) => {
+  var newGirl = new Girl(req.body);
+
+  newGirl.save(function(err) {
+    if (err) {
+      console.log(err);
+      res.status(400).json({
+        success: false
+      });
+    }
+    else {
+      res.status(200).json({
+        success: true
+      });
+    }
+  });
+});
+
+router.delete('/girl', (req, res) => {
+  var nameArray = req.query.nameArray;
+
+    Girl.find({ name: {$in: nameArray} }).remove().exec(function(err) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({
+          success: false
+        });
+      }
+      else {
+        res.status(200).json({
+          success: true
+        });
+      }
+    });
+});
+
+// Cookie information routes
 router.get('/cookie', (req, res) => {
   Cookie.find({})
     .exec(function(err, doc) {
@@ -41,6 +80,7 @@ router.get('/cookie', (req, res) => {
     });
 });
 
+// Booth information routes
 router.get('/booth', (req, res) => {
   Booth.find({})
     .exec(function(err, doc) {
@@ -55,6 +95,7 @@ router.get('/booth', (req, res) => {
     });
 });
 
+// Troop Cookie Inventory routes
 router.get('/troopCookie', (req, res) => {
   TroopCookie.find({})
     .exec(function(err, doc) {
@@ -69,12 +110,11 @@ router.get('/troopCookie', (req, res) => {
     });
 });
 
-
+// Girl Cookie Inventory routes
 router.get('/girlCookie', (req, res) => {
   GirlCookie.find({})
     .exec(function(err, doc) {
       if (err) {
-
         console.log(err);
       }
       else {
@@ -85,6 +125,7 @@ router.get('/girlCookie', (req, res) => {
     });
 });
 
+// Booth Cookie Inventory routes
 router.get('/boothCookie', (req, res) => {
   BoothCookie.find({})
     .exec(function(err, doc) {

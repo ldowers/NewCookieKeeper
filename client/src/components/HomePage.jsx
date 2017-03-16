@@ -3,9 +3,9 @@ import { Card, CardTitle } from 'material-ui/Card';
 
 
 const HomePage = () => (
-  <Card className="container">
-    <CardTitle title="Cookie Keeper" subtitle="This is the home page." />
-  </Card>
+  <div className="container">
+    <img className="bg-pic" src="/img/gs-clock.png" />
+  </div>
 );
 
 export default HomePage;
