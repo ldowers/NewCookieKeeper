@@ -1,8 +1,8 @@
 import React from 'react';
 import Auth from '../modules/Auth';
-import GirlScout from '../components/GirlScout.jsx';
+import GirlCookie from '../components/GirlCookie.jsx';
 
-class GirlScoutPage extends React.Component {
+class GirlCookiePage extends React.Component {
 
     /**
    * Class constructor.
@@ -19,7 +19,7 @@ class GirlScoutPage extends React.Component {
    * This method will be executed after initial rendering.
    */
     componentDidMount() {
-        console.log("GirlScout Page: componentDidMount");
+        console.log("GirlCookie Page: componentDidMount");
 
         const xhr = new XMLHttpRequest();
         xhr.open('get', '/api/girlCookie');
@@ -35,7 +35,7 @@ class GirlScoutPage extends React.Component {
                 });
             }
             else {
-                console.log("GirlScout Page: status: " + xhr.status);
+                console.log("GirlCookiePage: status: " + xhr.status);
             }
         });
         xhr.send();
@@ -46,8 +46,8 @@ class GirlScoutPage extends React.Component {
      * Render the component.
     */
     render() {
-        return (<GirlScout girlCookies={this.state.girlCookies}/>);
+        return (<GirlCookie girlCookies={this.state.girlCookies}/>);
     }
 }
 
-export default GirlScoutPage;
+export default GirlCookiePage;

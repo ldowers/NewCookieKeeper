@@ -63,7 +63,7 @@ const selectRowProp = {
 };
 //======================================
 
-const GirlScout = ({girlCookies}) => (
+const GirlCookie = ({girlCookies}) => (
   <div>
     <Card className="container">
       <CardTitle
@@ -93,8 +93,8 @@ const GirlScout = ({girlCookies}) => (
   </div>
 );
 
-GirlScout.propTypes = {
+GirlCookie.propTypes = {
   girlCookies: PropTypes.array.isRequired
 };
 
-export default GirlScout;
+export default GirlCookie;

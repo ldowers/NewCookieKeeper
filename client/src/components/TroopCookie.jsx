@@ -65,10 +65,6 @@ const selectRowProp = {
 };
 //======================================
 
-// if (troopCookies != 0){
-// this.addUpCookies(troopCookies);
-// }
-
 
 const TroopCookie = ({troopCookies}) => (
   <div>
@@ -78,13 +74,7 @@ const TroopCookie = ({troopCookies}) => (
       />
     </Card>
 
-    {/*{console.log(this.addUpCookies(troopCookies))}*/}
-{/*
-    {console.log("troopCookies is: " + troopCookies)}
-    {console.log("troopCookies[0] is: " + JSON.stringify(troopCookies[0], null, 4))}
-    {
-        console.log("troopcookies[0].tal " + troopCookies[0].TAL)
-    }*/}
+   
     {/*Troop Cookie Inventory Table*/}
     <BootstrapTable 
     data={addUpCookies(troopCookies)} 
