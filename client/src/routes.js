@@ -9,6 +9,7 @@ import CookieInventoryPage from './containers/CookieInventoryPage.jsx';
 import TroopCookiePage from './containers/TroopCookiePage.jsx';
 import GirlCookiePage from './containers/GirlCookiePage.jsx';
 import BoothCookiePage from './containers/BoothCookiePage.jsx';
+import InventoryTotalPage from './containers/InventoryTotalPage.jsx';
 
 
 const routes = {
@@ -27,19 +28,19 @@ const routes = {
       }
     },
 
-    {
-      path: '/information',
-      getComponent: (location, callback) => {
-        callback(null, InformationPage);
-      }
-    },
+    // {
+    //   path: '/information',
+    //   getComponent: (location, callback) => {
+    //     callback(null, InformationPage);
+    //   }
+    // },
 
-    {
-      path: '/cookieInventory',
-      getComponent: (location, callback) => {
-        callback(null, CookieInventoryPage);
-      }
-    },
+    // {
+    //   path: '/cookieInventory',
+    //   getComponent: (location, callback) => {
+    //     callback(null, CookieInventoryPage);
+    //   }
+    // },
 
     {
       path: '/troopCookie',
@@ -57,6 +58,12 @@ const routes = {
       path: '/boothCookie',
       getComponent: (location, callback) => {
         callback(null, BoothCookiePage);
+      }
+    },
+    {
+      path: '/inventoryTotal',
+      getComponent: (location, callback) => {
+        callback(null, InventoryTotalPage);
       }
     },
 

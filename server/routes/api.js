@@ -6,6 +6,7 @@ var Booth = require ("../models/booth.js");
 var TroopCookie = require("../models/troopCookie.js");
 var GirlCookie = require("../models/girlCookie.js");
 var BoothCookie = require("../models/boothCookie.js");
+// var InventoryTotal = require("../models/inventoryTotal.js");
 
 // Dashboard routes
 router.get('/dashboard', (req, res) => {
@@ -139,5 +140,23 @@ router.get('/boothCookie', (req, res) => {
       }
     });
 });
+
+//  Inventory Total routes
+// router.get('/inventoryTotal', (req, res) => {
+//   InventoryTotal.find({})
+//     .exec(function(err, doc) {
+//       if (err) {
+//         console.log(err);
+//       }
+//       else {
+//         res.status(200).json({
+//           inventoryTotal: doc
+//         });
+//       }
+//     });
+// });
+
+
+
 
 module.exports = router;
