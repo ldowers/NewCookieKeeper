@@ -34,8 +34,7 @@ const Information = ({girls, options}) => (
     options={options}
     csvFileName='Girls Info.csv'>
       
-      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true}hidden >ID #</TableHeaderColumn>
-      <TableHeaderColumn dataField='name' csvHeader="Girl's Name">Girl's Name</TableHeaderColumn>
+    <TableHeaderColumn dataField='name' csvHeader="Girl's Name" isKey={true}>Girl's Name</TableHeaderColumn>
     </BootstrapTable>
   </div>
 );

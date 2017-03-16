@@ -70,7 +70,7 @@ class InformationPage extends React.Component {
       axios.delete('/api/girl', {
           headers: {'Authorization': `bearer ${Auth.getToken()}`},
           params: {
-            idArray: rowKeys
+            nameArray: rowKeys
           } 
         })
         .then(function (response) {

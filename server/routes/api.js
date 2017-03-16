@@ -48,9 +48,9 @@ router.post('/girl', (req, res) => {
 });
 
 router.delete('/girl', (req, res) => {
-  var idArray = req.query.idArray;
+  var nameArray = req.query.nameArray;
 
-    Girl.find({ _id: {$in: idArray} }).remove().exec(function(err) {
+    Girl.find({ name: {$in: nameArray} }).remove().exec(function(err) {
       if (err) {
         console.log(err);
         res.status(400).json({
