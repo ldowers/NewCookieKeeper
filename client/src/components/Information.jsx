@@ -9,39 +9,13 @@ const cellEditProp = {
 };
 //======================================
 
-//======================================
-//code to insert rows
-function onAfterInsertRow(row) {
-    let newRowStr = '';
-
-    for (const prop in row) {
-        newRowStr += prop + ': ' + row[prop] + ' \n';
-    }
-    alert('The new row is:\n ' + newRowStr);
-}
-
-const options = {
-    afterInsertRow: onAfterInsertRow   // A hook for after insert rows
-};
-//======================================
-
-//======================================
-//code to delete rows
-function onAfterDeleteRow(rowKeys) {
-    alert('The rowkey you drop: ' + rowKeys);
-}
-
-const deleteOptions = {
-    afterDeleteRow: onAfterDeleteRow  // A hook for after droping rows.
-};
-
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
     mode: 'checkbox'
 };
 //======================================
 
-const Information = ({girls}) => (
+const Information = ({girls, options}) => (
   <div>
     <Card className="container">
       <CardTitle
@@ -57,11 +31,11 @@ const Information = ({girls}) => (
     deleteRow={true} 
     selectRow={selectRowProp} 
     exportCSV={ true }
-    options={options} 
-    options={deleteOptions}
+    options={options}
     csvFileName='Girls Info.csv'>
       
-      <TableHeaderColumn dataField='name' csvHeader="Girl's Name" isKey={true}>Girl's Name</TableHeaderColumn>
+      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true}hidden >ID #</TableHeaderColumn>
+      <TableHeaderColumn dataField='name' csvHeader="Girl's Name">Girl's Name</TableHeaderColumn>
     </BootstrapTable>
   </div>
 );
