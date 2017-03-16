@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 module.exports.connect = (uri) => {
-  mongoose.connect(uri);
   // plug in the promise library:
-  mongoose.Promise = global.Promise;
+  mongoose.Promise = require('bluebird');
+  
+  mongoose.connect(uri);
 
 
   mongoose.connection.on('error', (err) => {
@@ -16,4 +17,7 @@ module.exports.connect = (uri) => {
   require('./girl');
   require('./booth');
   require('./cookie');
+  require('./troopCookie');
+  require('./girlCookie');
+  require('./boothCookie');
 };
