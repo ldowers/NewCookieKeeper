@@ -16,7 +16,9 @@ class InformationPage extends React.Component {
       girls: [],
       options: {
         afterInsertRow: this.onAfterInsertRow,
-        afterDeleteRow: this.onAfterDeleteRow
+        afterDeleteRow: this.onAfterDeleteRow,
+        defaultSortName: 'name',
+        defaultSortOrder: 'asc'
       }
     };
 
