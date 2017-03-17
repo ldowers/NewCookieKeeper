@@ -10,7 +10,7 @@ var BoothCookie = require("../models/boothCookie.js");
 // Dashboard routes
 router.get('/dashboard', (req, res) => {
   res.status(200).json({
-    message: "You're authorized to see this secret message."
+    message: ""
   });
 });
 
@@ -162,6 +162,43 @@ router.get('/girlCookie', (req, res) => {
     });
 });
 
+router.post('/girlCookie', (req, res) => {
+  var newGirlCookie = new GirlCookie(req.body);
+
+  newGirlCookie.save(function(err, doc) {
+    if (err) {
+      console.log(err);
+      res.status(400).json({
+        success: false
+      });
+    }
+    else {
+      res.status(200).json({
+        success: true,
+        _id: doc._id
+      });
+    }
+  });
+});
+
+router.delete('/girlCookie', (req, res) => {
+  var idArray = req.query.idArray;
+
+    GirlCookie.find({ _id: {$in: idArray} }).remove().exec(function(err) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({
+          success: false
+        });
+      }
+      else {
+        res.status(200).json({
+          success: true
+        });
+      }
+    });
+});
+
 // Booth Cookie Inventory routes
 router.get('/boothCookie', (req, res) => {
   BoothCookie.find({})
@@ -172,6 +209,43 @@ router.get('/boothCookie', (req, res) => {
       else {
         res.status(200).json({
           boothCookies: doc
+        });
+      }
+    });
+});
+
+router.post('/boothCookie', (req, res) => {
+  var newBoothCookie = new BoothCookie(req.body);
+
+  newBoothCookie.save(function(err, doc) {
+    if (err) {
+      console.log(err);
+      res.status(400).json({
+        success: false
+      });
+    }
+    else {
+      res.status(200).json({
+        success: true,
+        _id: doc._id
+      });
+    }
+  });
+});
+
+router.delete('/boothCookie', (req, res) => {
+  var idArray = req.query.idArray;
+
+    BoothCookie.find({ _id: {$in: idArray} }).remove().exec(function(err) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({
+          success: false
+        });
+      }
+      else {
+        res.status(200).json({
+          success: true
         });
       }
     });

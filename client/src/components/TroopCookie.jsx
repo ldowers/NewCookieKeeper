@@ -56,21 +56,21 @@ const TroopCookie = ({troopCookies, options}) => (
     options={options} 
     csvFileName='Troop Cookie Inventory.csv'>
 
-        <TableHeaderColumn dataField='_id' isKey={ true } hiddenOnInsert autoValue>ID</TableHeaderColumn>
+        <TableHeaderColumn dataField='_id' isKey={ true } hidden hiddenOnInsert autoValue>ID</TableHeaderColumn>
         <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
-        <TableHeaderColumn dataField='type' csvHeader="Type">Type</TableHeaderColumn>
+        <TableHeaderColumn dataField='type' csvHeader="Type" >Type</TableHeaderColumn>
         <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
         <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
-        <TableHeaderColumn dataField='TAL' csvHeader="TAL" hidden>TAL</TableHeaderColumn>
-        <TableHeaderColumn dataField='SMR' csvHeader="SMR" hidden>SMR</TableHeaderColumn>
-        <TableHeaderColumn dataField='LEM' csvHeader="LEM" hidden>LEM</TableHeaderColumn>
-        <TableHeaderColumn dataField='SB' csvHeader="SB" hidden>SB</TableHeaderColumn>
-        <TableHeaderColumn dataField='TM' csvHeader="TM" hidden>TM</TableHeaderColumn>
-        <TableHeaderColumn dataField='PBP' csvHeader="PBP" hidden>PBP</TableHeaderColumn>
-        <TableHeaderColumn dataField='CD' csvHeader="CD" hidden>CD</TableHeaderColumn>
-        <TableHeaderColumn dataField='PBS' csvHeader="PBS" hidden>PBS</TableHeaderColumn>
-        <TableHeaderColumn dataField='GFT' csvHeader="GFT" hidden>GFT</TableHeaderColumn>
-        <TableHeaderColumn dataField='MCS' csvHeader="MCS" hidden>MCS</TableHeaderColumn>
+        <TableHeaderColumn dataField='TAL' csvHeader="TAL" >TAL</TableHeaderColumn>
+        <TableHeaderColumn dataField='SMR' csvHeader="SMR" >SMR</TableHeaderColumn>
+        <TableHeaderColumn dataField='LEM' csvHeader="LEM" >LEM</TableHeaderColumn>
+        <TableHeaderColumn dataField='SB' csvHeader="SB" >SB</TableHeaderColumn>
+        <TableHeaderColumn dataField='TM' csvHeader="TM" >TM</TableHeaderColumn>
+        <TableHeaderColumn dataField='PBP' csvHeader="PBP" >PBP</TableHeaderColumn>
+        <TableHeaderColumn dataField='CD' csvHeader="CD" >CD</TableHeaderColumn>
+        <TableHeaderColumn dataField='PBS' csvHeader="PBS" >PBS</TableHeaderColumn>
+        <TableHeaderColumn dataField='GFT' csvHeader="GFT" >GFT</TableHeaderColumn>
+        <TableHeaderColumn dataField='MCS' csvHeader="MCS" >MCS</TableHeaderColumn>
         <TableHeaderColumn dataField='total' csvHeader="Total" hiddenOnInsert >Total</TableHeaderColumn>
     
     </BootstrapTable>
