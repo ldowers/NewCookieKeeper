@@ -2,6 +2,9 @@ body {
   margin: 0;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
+  background-image: url('/img/gs-cookies.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 a {
@@ -18,6 +21,11 @@ a:hover {
 .top-bar a,
 .top-bar a:hover{
   color: #ffffff;
+}
+
+.top-bar a:hover{
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .text-center {
@@ -42,6 +50,7 @@ a:hover {
 
 .top-bar-right {
   float: right;
+  margin-top:10px;
 }
 
 .top-bar a,
@@ -85,7 +94,8 @@ button{
 @media (min-width: 768px){
   .col-sm-6{
     width: 75% !important;
-    margin-left:125px;
+    margin-left:140px;
+    float:none;
   }
 }
 
@@ -108,5 +118,9 @@ button{
 }
 
 .gs-logo{
-  width:15%;
+  width:13%;
+}
+
+table{
+  background-color: #fff !important;
 }
