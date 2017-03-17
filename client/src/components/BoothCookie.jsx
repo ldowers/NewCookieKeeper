@@ -9,29 +9,6 @@ const cellEditProp = {
 };
 //======================================
 
-//======================================
-//code to insert rows
-function onAfterInsertRow(row) {
-    let newRowStr = '';
-
-    for (const prop in row) {
-        newRowStr += prop + ': ' + row[prop] + ' \n';
-    }
-    alert('The new row is:\n ' + newRowStr);
-}
-
-const options = {
-    afterInsertRow: onAfterInsertRow,   // A hook for after insert rows
-    afterDeleteRow: onAfterDeleteRow 
-};
-//======================================
-
-//======================================
-//code to delete rows
-function onAfterDeleteRow(rowKeys) {
-    alert('The rowkey you drop: ' + rowKeys);
-}
-
 function addUpCookies(boothCookies) {
     if(boothCookies.length === 0){
         return
@@ -49,12 +26,10 @@ function addUpCookies(boothCookies) {
         boothCookies[i].PBS + 
         boothCookies[i].GFT + 
         boothCookies[i].MCS; 
-
     }
 
     return boothCookies;
 }
-
 
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
@@ -62,7 +37,7 @@ const selectRowProp = {
 };
 //======================================
 
-const BoothCookie = ({boothCookies}) => (
+const BoothCookie = ({boothCookies, options}) => (
   <div>
     <Card className="container">
       <CardTitle
@@ -81,11 +56,22 @@ const BoothCookie = ({boothCookies}) => (
     options={options} 
     csvFileName='Booth Cookie Inventory.csv'>
       
-      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true} hidden>ID #</TableHeaderColumn>
-      <TableHeaderColumn dataField='location' csvHeader="Location">Location</TableHeaderColumn>
-      <TableHeaderColumn dataField='start' csvHeader="Start" >Start</TableHeaderColumn>
-      <TableHeaderColumn dataField='end' csvHeader="End" >End</TableHeaderColumn>
-      <TableHeaderColumn dataField='total' csvHeader="Total" >Total</TableHeaderColumn>
+        <TableHeaderColumn dataField='_id' isKey={ true } hidden hiddenOnInsert autoValue>ID</TableHeaderColumn>
+        <TableHeaderColumn dataField='location' csvHeader="Location">Location</TableHeaderColumn>
+        <TableHeaderColumn dataField='start' csvHeader="Start" >Start</TableHeaderColumn>
+        <TableHeaderColumn dataField='end' csvHeader="End" >End</TableHeaderColumn>
+        <TableHeaderColumn dataField='TAL' csvHeader="TAL" >TAL</TableHeaderColumn>
+        <TableHeaderColumn dataField='SMR' csvHeader="SMR" >SMR</TableHeaderColumn>
+        <TableHeaderColumn dataField='LEM' csvHeader="LEM" >LEM</TableHeaderColumn>
+        <TableHeaderColumn dataField='SB' csvHeader="SB" >SB</TableHeaderColumn>
+        <TableHeaderColumn dataField='TM' csvHeader="TM" >TM</TableHeaderColumn>
+        <TableHeaderColumn dataField='PBP' csvHeader="PBP" >PBP</TableHeaderColumn>
+        <TableHeaderColumn dataField='CD' csvHeader="CD" >CD</TableHeaderColumn>
+        <TableHeaderColumn dataField='PBS' csvHeader="PBS" >PBS</TableHeaderColumn>
+        <TableHeaderColumn dataField='GFT' csvHeader="GFT" >GFT</TableHeaderColumn>
+        <TableHeaderColumn dataField='MCS' csvHeader="MCS" >MCS</TableHeaderColumn>
+        <TableHeaderColumn dataField='total' csvHeader="Total" hiddenOnInsert >Total</TableHeaderColumn>
+        
     </BootstrapTable>
   </div>
 );

@@ -17,7 +17,7 @@ const Base = ({ children }) => (
           <Link to="/cookieInventory">Cookie Inventory</Link>*/}
           <Link to="/troopCookie">Troop</Link>
           <Link to="/girlCookie">Girl Scouts</Link>
-          <Link to="/boothCookie">Booth</Link>
+          <Link to="/boothCookie">Booths</Link>
            <Link to="/inventoryTotal">Inventory</Link>
 
           <Link to="/logout">Log out</Link>

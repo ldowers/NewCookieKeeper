@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Auth from '../modules/Auth';
 import BoothCookie from '../components/BoothCookie.jsx';
 
@@ -11,8 +12,17 @@ class BoothCookiePage extends React.Component {
         super(props);
 
         this.state = {
-            boothCookies: []
+            boothCookies: [],
+            options: {
+                afterInsertRow: this.onAfterInsertRow,
+                afterDeleteRow: this.onAfterDeleteRow,
+                defaultSortName: 'date',
+                defaultSortOrder: 'asc'
+            }
         };
+
+        this.onAfterInsertRow = this.onAfterInsertRow.bind(this);
+        this.onAfterDeleteRow = this.onAfterDeleteRow.bind(this);
     }
 
     /**
@@ -21,26 +31,68 @@ class BoothCookiePage extends React.Component {
     componentDidMount() {
         console.log("BoothCookiePage: componentDidMount");
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', '/api/boothCookie');
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        // set the authorization HTTP header
-        xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
-        xhr.responseType = 'json';
-        xhr.addEventListener('load', () => {
-            if (xhr.status === 200) {
-                console.log("BoothCookiePage: status 200");
-                this.setState({
-                    boothCookies: xhr.response.boothCookies
-                });
-            }
-            else {
-                console.log("Booth Cookie Page: status: " + xhr.status);
-            }
-        });
-        xhr.send();
+        axios.get('/api/boothCookie', {headers: {'Authorization': `bearer ${Auth.getToken()}`}})
+            .then(function (response) {
+                if (response.data && response.data.boothCookies) {
+                    this.setState({
+                        boothCookies: response.data.boothCookies
+                    });
+                }
+            }.bind(this))
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
+    //======================================
+    //code to insert rows
+    onAfterInsertRow(row) {
+        console.log("onAfterInsertRow called");
+        let boothCookie = {};
+
+        row.total = 0;
+
+        let newRowStr = '';
+        for (const prop in row) {
+            if (prop !== "_id" && prop !== "total") {
+                boothCookie[prop] = row[prop];
+            }
+            if (prop === "TAL" || prop === "SMR" || prop === "LEM" || prop === "SB" || prop === "TM" || prop === "PBP" ||
+            prop === "CD" || prop === "PBS" || prop === "GFT" || prop === "MCS") {
+                row.total += parseInt(row[prop]);
+            }
+            newRowStr += prop + ': ' + row[prop] + ' \n';
+        }
+        alert('The new row is:\n ' + newRowStr);
+
+        console.log("Booth Cookie: " + boothCookie);
+        axios.post('/api/boothCookie', boothCookie, {headers: {'Authorization': `bearer ${Auth.getToken()}`}})
+            .then(function (response) {
+                console.log("Save succesful");
+                row._id = response.data._id;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } 
+
+    //======================================
+    //code to delete rows
+    onAfterDeleteRow(rowKeys) {
+        axios.delete('/api/boothCookie', {
+            headers: {'Authorization': `bearer ${Auth.getToken()}`},
+            params: {
+                idArray: rowKeys
+            } 
+        })
+        .then(function (response) {
+            console.log("Delete succesful");
+            alert('The rowkeys you dropped: ' + rowKeys);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+  }
 
     /**
      * Render the component.
