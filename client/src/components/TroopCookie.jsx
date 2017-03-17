@@ -9,29 +9,6 @@ const cellEditProp = {
 };
 //======================================
 
-//======================================
-//code to insert rows
-function onAfterInsertRow(row) {
-    let newRowStr = '';
-
-    for (const prop in row) {
-        newRowStr += prop + ': ' + row[prop] + ' \n';
-    }
-    alert('The new row is:\n ' + newRowStr);
-}
-
-const options = {
-    afterInsertRow: onAfterInsertRow,   // A hook for after insert rows
-     afterDeleteRow: onAfterDeleteRow
-};
-//======================================
-
-//======================================
-//code to delete rows
-function onAfterDeleteRow(rowKeys) {
-    alert('The rowkey you drop: ' + rowKeys);
-}
-
 function addUpCookies(troopCookies) {
     if(troopCookies.length === 0){
         return
@@ -49,15 +26,10 @@ function addUpCookies(troopCookies) {
         troopCookies[i].PBS + 
         troopCookies[i].GFT + 
         troopCookies[i].MCS; 
-
     }
 
     return troopCookies;
 }
-
-const deleteOptions = {
-    afterDeleteRow: onAfterDeleteRow  // A hook for after droping rows.
-};
 
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
@@ -65,8 +37,7 @@ const selectRowProp = {
 };
 //======================================
 
-
-const TroopCookie = ({troopCookies}) => (
+const TroopCookie = ({troopCookies, options}) => (
   <div>
     <Card className="container">
       <CardTitle
@@ -74,7 +45,6 @@ const TroopCookie = ({troopCookies}) => (
       />
     </Card>
 
-   
     {/*Troop Cookie Inventory Table*/}
     <BootstrapTable 
     data={addUpCookies(troopCookies)} 
@@ -85,13 +55,23 @@ const TroopCookie = ({troopCookies}) => (
     exportCSV={ true }
     options={options} 
     csvFileName='Troop Cookie Inventory.csv'>
-      
-      <TableHeaderColumn dataField='_id' csvHeader="ID #" isKey={true}hidden >ID #</TableHeaderColumn>
-      <TableHeaderColumn dataField='type' csvHeader="Cookie">Cookie Type</TableHeaderColumn>
-      <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
-      <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
-       <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
-       <TableHeaderColumn dataField='total' csvHeader="Total" >Total</TableHeaderColumn>
+
+        <TableHeaderColumn dataField='_id' isKey={ true } hiddenOnInsert autoValue>ID</TableHeaderColumn>
+        <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
+        <TableHeaderColumn dataField='type' csvHeader="Type">Type</TableHeaderColumn>
+        <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
+        <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>
+        <TableHeaderColumn dataField='TAL' csvHeader="TAL" hidden>TAL</TableHeaderColumn>
+        <TableHeaderColumn dataField='SMR' csvHeader="SMR" hidden>SMR</TableHeaderColumn>
+        <TableHeaderColumn dataField='LEM' csvHeader="LEM" hidden>LEM</TableHeaderColumn>
+        <TableHeaderColumn dataField='SB' csvHeader="SB" hidden>SB</TableHeaderColumn>
+        <TableHeaderColumn dataField='TM' csvHeader="TM" hidden>TM</TableHeaderColumn>
+        <TableHeaderColumn dataField='PBP' csvHeader="PBP" hidden>PBP</TableHeaderColumn>
+        <TableHeaderColumn dataField='CD' csvHeader="CD" hidden>CD</TableHeaderColumn>
+        <TableHeaderColumn dataField='PBS' csvHeader="PBS" hidden>PBS</TableHeaderColumn>
+        <TableHeaderColumn dataField='GFT' csvHeader="GFT" hidden>GFT</TableHeaderColumn>
+        <TableHeaderColumn dataField='MCS' csvHeader="MCS" hidden>MCS</TableHeaderColumn>
+        <TableHeaderColumn dataField='total' csvHeader="Total" hiddenOnInsert >Total</TableHeaderColumn>
     
     </BootstrapTable>
   </div>

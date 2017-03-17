@@ -6,7 +6,6 @@ var Booth = require ("../models/booth.js");
 var TroopCookie = require("../models/troopCookie.js");
 var GirlCookie = require("../models/girlCookie.js");
 var BoothCookie = require("../models/boothCookie.js");
-// var InventoryTotal = require("../models/inventoryTotal.js");
 
 // Dashboard routes
 router.get('/dashboard', (req, res) => {
@@ -111,6 +110,43 @@ router.get('/troopCookie', (req, res) => {
     });
 });
 
+router.post('/troopCookie', (req, res) => {
+  var newTroopCookie = new TroopCookie(req.body);
+
+  newTroopCookie.save(function(err, doc) {
+    if (err) {
+      console.log(err);
+      res.status(400).json({
+        success: false
+      });
+    }
+    else {
+      res.status(200).json({
+        success: true,
+        _id: doc._id
+      });
+    }
+  });
+});
+
+router.delete('/troopCookie', (req, res) => {
+  var idArray = req.query.idArray;
+
+    TroopCookie.find({ _id: {$in: idArray} }).remove().exec(function(err) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({
+          success: false
+        });
+      }
+      else {
+        res.status(200).json({
+          success: true
+        });
+      }
+    });
+});
+
 // Girl Cookie Inventory routes
 router.get('/girlCookie', (req, res) => {
   GirlCookie.find({})
@@ -140,23 +176,5 @@ router.get('/boothCookie', (req, res) => {
       }
     });
 });
-
-//  Inventory Total routes
-// router.get('/inventoryTotal', (req, res) => {
-//   InventoryTotal.find({})
-//     .exec(function(err, doc) {
-//       if (err) {
-//         console.log(err);
-//       }
-//       else {
-//         res.status(200).json({
-//           inventoryTotal: doc
-//         });
-//       }
-//     });
-// });
-
-
-
 
 module.exports = router;
