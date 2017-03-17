@@ -27,7 +27,7 @@ class InventoryTotalPage extends React.Component {
           "GFT": 12,
           "MCS": 23,
         }, {
-          "from": "Girls",
+          "from": "Girl Scouts",
           "TAL": 127,
           "SMR": 123,
           "LEM": 95,
@@ -40,6 +40,19 @@ class InventoryTotalPage extends React.Component {
           "MCS": 21,
         }, {
           "from": "Booths",
+          "TAL": 27,
+          "SMR": 157,
+          "LEM": 37,
+          "SB": 44,
+          "TM": 168,
+          "PBP": 83,
+          "CD": 93,
+          "PBS": 61,
+          "GFT": 4,
+          "MCS": 2,
+        },
+        {
+          "from": "Remaining",
           "TAL": 27,
           "SMR": 157,
           "LEM": 37,

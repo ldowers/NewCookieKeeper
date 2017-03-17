@@ -45,6 +45,7 @@ function addUpCookies(inventoryTotal) {
     if(inventoryTotal.length === 0){
         return
     }
+    console.log("inventory total: " + JSON.stringify(inventoryTotal, null, 4));
 
     for(let i = 0; i < inventoryTotal.length; i++){
         inventoryTotal[i].total =  
@@ -62,6 +63,19 @@ function addUpCookies(inventoryTotal) {
 
     return inventoryTotal;
 }
+
+// function calculateRemaining (inventoryTotal){
+//     if (inventoryTotal.length ===0){
+//         return
+//     }
+
+//     for (let i=0; i<inventoryTotal.length; i++){
+//         inventoryTotal[i].remaining =
+//         inventoryTotal[i].TAL -
+//         inventoryTotal[i+1].TAL -
+//         inventoryTotal[i+2]; 
+//     }
+// }
 
 
 const InventoryTotal = ({inventoryTotal}) => (
