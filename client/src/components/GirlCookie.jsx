@@ -35,7 +35,7 @@ const GirlCookie = ({girlCookies, options}) => (
     csvFileName='Girl Scout Cookie Inventory.csv'>
       
         <TableHeaderColumn dataField='_id' isKey={ true } hidden hiddenOnInsert autoValue>ID</TableHeaderColumn>
-        <TableHeaderColumn dataField='date' csvHeader="Date" >Date</TableHeaderColumn>
+        <TableHeaderColumn dataField='date' csvHeader="Date" columnClassName="dateColumn" >Date</TableHeaderColumn>
         <TableHeaderColumn dataField='name' csvHeader="Name" >Name</TableHeaderColumn>
         <TableHeaderColumn dataField='TAL' csvHeader="TAL" >TAL</TableHeaderColumn>
         <TableHeaderColumn dataField='SMR' csvHeader="SMR" >SMR</TableHeaderColumn>
