@@ -93,13 +93,11 @@ button{
 @media (min-width: 768px){
   .col-sm-6{
     width: 75% !important;
-    margin-left:140px;
     float:none;
   }
 }
 
 .table {
-  width:80% !important;
   margin-left: auto;
   margin-right: auto;
 }
@@ -124,4 +122,11 @@ button{
 
 table{
   background-color: #fff !important;
+}
+
+.react-bs-table table td, 
+.react-bs-table table th{
+  white-space:inherit !important;
+  overflow-wrap: break-word;
+  font-size:12px;
 }
