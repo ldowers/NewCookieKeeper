@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import Auth from '../modules/Auth';
 import GirlCookie from '../components/GirlCookie.jsx';
 
@@ -14,10 +15,10 @@ class GirlCookiePage extends React.Component {
         this.state = {
             girlCookies: [],
             options: {
-            afterInsertRow: this.onAfterInsertRow,
-            afterDeleteRow: this.onAfterDeleteRow,
-            defaultSortName: 'date',
-            defaultSortOrder: 'asc'
+                afterInsertRow: this.onAfterInsertRow,
+                afterDeleteRow: this.onAfterDeleteRow,
+                defaultSortName: 'date',
+                defaultSortOrder: 'asc'
             }
         };
 
@@ -34,9 +35,10 @@ class GirlCookiePage extends React.Component {
         axios.get('/api/girlCookie', {headers: {'Authorization': `bearer ${Auth.getToken()}`}})
             .then(function (response) {
                 if (response.data && response.data.girlCookies) {
-                this.setState({
-                    girlCookies: response.data.girlCookies
-                });
+                    var girlCookies = this.modifyCookies(response.data.girlCookies);
+                    this.setState({
+                        girlCookies: girlCookies
+                    });
                 }
             }.bind(this))
             .catch(function (error) {
@@ -49,21 +51,27 @@ class GirlCookiePage extends React.Component {
     onAfterInsertRow(row) {
         console.log("onAfterInsertRow called");
         let girlCookie = {};
+        let convertedDate = moment(new Date(row.date));
 
         row.total = 0;
 
-        let newRowStr = '';
         for (const prop in row) {
-            if (prop !== "_id" && prop !== "total") {
-                girlCookie[prop] = row[prop];
-            }
             if (prop === "TAL" || prop === "SMR" || prop === "LEM" || prop === "SB" || prop === "TM" || prop === "PBP" ||
             prop === "CD" || prop === "PBS" || prop === "GFT" || prop === "MCS") {
+                if (row[prop] === "") {
+                    row[prop] = "0";
+                }
                 row.total += parseInt(row[prop]);
+                girlCookie[prop] = parseInt(row[prop]);
             }
-            newRowStr += prop + ': ' + row[prop] + ' \n';
+            else if (prop === "date") {
+                row.date = moment(convertedDate).format('MM/DD/YYYY');;
+                girlCookie[prop] = row.date;
+            }
+            else if (prop !== "_id" && prop !== "total") {
+                girlCookie[prop] = row[prop];
+            }
         }
-        alert('The new row is:\n ' + newRowStr);
 
         console.log("Girl Cookie: " + girlCookie);
         axios.post('/api/girlCookie', girlCookie, {headers: {'Authorization': `bearer ${Auth.getToken()}`}})
@@ -79,6 +87,7 @@ class GirlCookiePage extends React.Component {
     //======================================
     //code to delete rows
     onAfterDeleteRow(rowKeys) {
+        console.log("onAfterDeleteRow called");
         axios.delete('/api/girlCookie', {
             headers: {'Authorization': `bearer ${Auth.getToken()}`},
             params: {
@@ -87,12 +96,36 @@ class GirlCookiePage extends React.Component {
         })
         .then(function (response) {
             console.log("Delete succesful");
-            alert('The rowkeys you dropped: ' + rowKeys);
         })
         .catch(function (error) {
             console.log(error);
         });
   }
+
+  modifyCookies(girlCookies) {
+        console.log("modifyCookies called");
+
+        if(girlCookies.length === 0){
+            return
+        }
+
+        for(let i = 0; i < girlCookies.length; i++){
+            girlCookies[i].date = moment(girlCookies[i].date).format('MM/DD/YYYY');
+            girlCookies[i].total =  
+            girlCookies[i].TAL +
+            girlCookies[i].SMR + 
+            girlCookies[i].LEM + 
+            girlCookies[i].SB + 
+            girlCookies[i].TM + 
+            girlCookies[i].PBP + 
+            girlCookies[i].CD + 
+            girlCookies[i].PBS + 
+            girlCookies[i].GFT + 
+            girlCookies[i].MCS; 
+        }
+
+        return girlCookies;
+    }
 
     /**
      * Render the component.

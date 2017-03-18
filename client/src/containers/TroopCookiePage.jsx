@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import Auth from '../modules/Auth';
 import TroopCookie from '../components/TroopCookie.jsx';
 
@@ -34,9 +35,10 @@ class TroopCookiePage extends React.Component {
         axios.get('/api/troopCookie', {headers: {'Authorization': `bearer ${Auth.getToken()}`}})
             .then(function (response) {
                 if (response.data && response.data.troopCookies) {
-                this.setState({
-                    troopCookies: response.data.troopCookies
-                });
+                    var troopCookies = this.modifyCookies(response.data.troopCookies);
+                    this.setState({
+                        troopCookies: troopCookies
+                    });
                 }
             }.bind(this))
             .catch(function (error) {
@@ -49,21 +51,27 @@ class TroopCookiePage extends React.Component {
     onAfterInsertRow(row) {
         console.log("onAfterInsertRow called");
         let troopCookie = {};
+        let convertedDate = moment(new Date(row.date));
 
         row.total = 0;
 
-        let newRowStr = '';
         for (const prop in row) {
-            if (prop !== "_id" && prop !== "total") {
-                troopCookie[prop] = row[prop];
-            }
             if (prop === "TAL" || prop === "SMR" || prop === "LEM" || prop === "SB" || prop === "TM" || prop === "PBP" ||
             prop === "CD" || prop === "PBS" || prop === "GFT" || prop === "MCS") {
+                if (row[prop] === "") {
+                    row[prop] = "0";
+                }
                 row.total += parseInt(row[prop]);
+                troopCookie[prop] = parseInt(row[prop]);
             }
-            newRowStr += prop + ': ' + row[prop] + ' \n';
+            else if (prop === "date") {
+                row.date = moment(convertedDate).format('MM/DD/YYYY');;
+                troopCookie[prop] = row.date;
+            }
+            else if (prop !== "_id" && prop !== "total") {
+                troopCookie[prop] = row[prop];
+            }
         }
-        alert('The new row is:\n ' + newRowStr);
 
         console.log("Troop Cookie: " + troopCookie);
         axios.post('/api/troopCookie', troopCookie, {headers: {'Authorization': `bearer ${Auth.getToken()}`}})
@@ -74,11 +82,12 @@ class TroopCookiePage extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
-    } 
+    }
 
     //======================================
     //code to delete rows
     onAfterDeleteRow(rowKeys) {
+        console.log("onAfterDeleteRow called");
         axios.delete('/api/troopCookie', {
             headers: {'Authorization': `bearer ${Auth.getToken()}`},
             params: {
@@ -87,12 +96,36 @@ class TroopCookiePage extends React.Component {
         })
         .then(function (response) {
             console.log("Delete succesful");
-            alert('The rowkeys you dropped: ' + rowKeys);
         })
         .catch(function (error) {
             console.log(error);
         });
-  }
+    }
+
+    modifyCookies(troopCookies) {
+        console.log("modifyCookies called");
+
+        if(troopCookies.length === 0){
+            return
+        }
+
+        for(let i = 0; i < troopCookies.length; i++){
+            troopCookies[i].date = moment(troopCookies[i].date).format('MM/DD/YYYY');
+            troopCookies[i].total =  
+            troopCookies[i].TAL +
+            troopCookies[i].SMR + 
+            troopCookies[i].LEM + 
+            troopCookies[i].SB + 
+            troopCookies[i].TM + 
+            troopCookies[i].PBP + 
+            troopCookies[i].CD + 
+            troopCookies[i].PBS + 
+            troopCookies[i].GFT + 
+            troopCookies[i].MCS; 
+        }
+
+        return troopCookies;
+    }
 
     /**
      * Render the component.

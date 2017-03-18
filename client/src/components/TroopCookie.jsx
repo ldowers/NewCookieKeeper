@@ -9,28 +9,6 @@ const cellEditProp = {
 };
 //======================================
 
-function addUpCookies(troopCookies) {
-    if(troopCookies.length === 0){
-        return
-    }
-
-    for(let i = 0; i < troopCookies.length; i++){
-        troopCookies[i].total =  
-        troopCookies[i].TAL +
-        troopCookies[i].SMR + 
-        troopCookies[i].LEM + 
-        troopCookies[i].SB + 
-        troopCookies[i].TM + 
-        troopCookies[i].PBP + 
-        troopCookies[i].CD + 
-        troopCookies[i].PBS + 
-        troopCookies[i].GFT + 
-        troopCookies[i].MCS; 
-    }
-
-    return troopCookies;
-}
-
 // If you want to enable deleteRow, you must enable row selection also.
 const selectRowProp = {
     mode: 'checkbox'
@@ -47,7 +25,7 @@ const TroopCookie = ({troopCookies, options}) => (
 
     {/*Troop Cookie Inventory Table*/}
     <BootstrapTable 
-    data={addUpCookies(troopCookies)} 
+    data={troopCookies} 
     cellEdit={cellEditProp} 
     insertRow={true} 
     deleteRow={true} 
