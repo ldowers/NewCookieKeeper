@@ -124,8 +124,7 @@ table{
   background-color: #fff !important;
 }
 
-.react-bs-table table td, 
-.react-bs-table table th{
+.dateColumn {
   white-space:inherit !important;
   overflow-wrap: break-word;
   font-size:12px;
