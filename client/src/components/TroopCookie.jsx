@@ -5,7 +5,8 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 //======================================
 //code to make cells editable
 const cellEditProp = {
-    mode: 'click'
+    mode: 'click',
+    blurToSave: true
 };
 //======================================
 
@@ -33,9 +34,11 @@ const TroopCookie = ({troopCookies, options}) => (
     exportCSV={ true }
     options={options} 
     csvFileName='Troop Cookie Inventory.csv'>
+    
 
         <TableHeaderColumn dataField='_id' isKey={ true } hidden hiddenOnInsert autoValue>ID</TableHeaderColumn>
-        <TableHeaderColumn dataField='date' csvHeader="Date" columnClassName="dateColumn" >Date</TableHeaderColumn>
+        {/* was: <TableHeaderColumn dataField='date' csvHeader="Date" columnClassName="dateColumn">Date</TableHeaderColumn>*/}
+        <TableHeaderColumn dataField='date' csvHeader="Date" columnClassName="dateColumn" editable={ { type: 'datetime' } }>Date</TableHeaderColumn>
         <TableHeaderColumn dataField='type' csvHeader="Type" >Type</TableHeaderColumn>
         <TableHeaderColumn dataField='from' csvHeader="From" >From</TableHeaderColumn>
         <TableHeaderColumn dataField='to' csvHeader="To" >To</TableHeaderColumn>

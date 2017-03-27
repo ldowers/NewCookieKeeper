@@ -124,8 +124,10 @@ table{
   background-color: #fff !important;
 }
 
+/*increased column width to 14% to show datetime picker*/
 .dateColumn {
   white-space:inherit !important;
   overflow-wrap: break-word;
   font-size:12px;
+  width: 14%;
 }

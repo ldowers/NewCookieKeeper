@@ -36,8 +36,10 @@ const BoothCookie = ({boothCookies, options}) => (
       
         <TableHeaderColumn dataField='_id' isKey={ true } hidden hiddenOnInsert autoValue>ID</TableHeaderColumn>
         <TableHeaderColumn dataField='location' csvHeader="Location">Location</TableHeaderColumn>
-        <TableHeaderColumn dataField='start' csvHeader="Start" columnClassName="dateColumn" >Start</TableHeaderColumn>
-        <TableHeaderColumn dataField='end' csvHeader="End" columnClassName="dateColumn" >End</TableHeaderColumn>
+        {/*was: <TableHeaderColumn dataField='start' csvHeader="Start" columnClassName="dateColumn">Start</TableHeaderColumn>*/}
+        <TableHeaderColumn dataField='start' csvHeader="Start" columnClassName="dateColumn" editable={ { type: 'datetime' } }>Start</TableHeaderColumn>
+        {/*was: <TableHeaderColumn dataField='end' csvHeader="End" columnClassName="dateColumn">End</TableHeaderColumn>*/}
+        <TableHeaderColumn dataField='end' csvHeader="End" columnClassName="dateColumn" editable={ { type: 'datetime' } }>End</TableHeaderColumn>
         <TableHeaderColumn dataField='TAL' csvHeader="TAL" >TAL</TableHeaderColumn>
         <TableHeaderColumn dataField='SMR' csvHeader="SMR" >SMR</TableHeaderColumn>
         <TableHeaderColumn dataField='LEM' csvHeader="LEM" >LEM</TableHeaderColumn>
